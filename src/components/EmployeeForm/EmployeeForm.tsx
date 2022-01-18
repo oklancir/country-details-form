@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import ExtraFieldsBrazil from '../ExtraFields/ExtraFieldsBrazil';
 import ExtraFieldsGhana from '../ExtraFields/ExtraFieldsGhana';
 import ExtraFieldsSpain from '../ExtraFields/ExtraFieldsSpain';
+import { assertUnreachable } from '../../utils';
 
 import './EmployeeForm.css';
 
@@ -55,6 +56,19 @@ const EmployeeForm = () => {
 
   const watchCountryOfWork = watch('countryOfWork');
 
+  const renderExtraFields = (countryOfWork: CountryEnum) => {
+    switch (countryOfWork) {
+      case CountryEnum.Spain:
+        return <ExtraFieldsSpain register={register} errors={errors} />;
+      case CountryEnum.Ghana:
+        return <ExtraFieldsGhana register={register} errors={errors} />;
+      case CountryEnum.Brazil:
+        return <ExtraFieldsBrazil register={register} errors={errors} />;
+      default:
+        assertUnreachable(countryOfWork);
+    }
+  };
+
   return (
     <form className="EmployeeForm" onSubmit={handleSubmit(onSubmit)}>
       <label>Country Selection</label>
@@ -72,16 +86,7 @@ const EmployeeForm = () => {
       <label>Date Of Birth</label>
       <input {...register('dateOfBirth', { required: true })} />
       {errors.dateOfBirth && <p>Please check the Date Of Birth</p>}
-
-      {watchCountryOfWork === CountryEnum.Spain && (
-        <ExtraFieldsSpain register={register} errors={errors} />
-      )}
-      {watchCountryOfWork === CountryEnum.Ghana && (
-        <ExtraFieldsGhana register={register} errors={errors} />
-      )}
-      {watchCountryOfWork === CountryEnum.Brazil && (
-        <ExtraFieldsBrazil register={register} errors={errors} />
-      )}
+      {renderExtraFields(watchCountryOfWork)}
       <input type="submit" />
     </form>
   );
