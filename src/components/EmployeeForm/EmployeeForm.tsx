@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import ExtraFieldsBrazil from '../ExtraFields/ExtraFieldsBrazil';
+import ExtraFieldsGhana from '../ExtraFields/ExtraFieldsGhana';
+import ExtraFieldsSpain from '../ExtraFields/ExtraFieldsSpain';
 
 import './EmployeeForm.css';
 
@@ -9,7 +12,7 @@ enum CountryEnum {
   Brazil = 'Brazil',
 }
 
-type EmployeeFormInputs = {
+export type EmployeeFormInputs = {
   countryOfWork: CountryEnum;
   firstName: string;
   lastName: string;
@@ -30,8 +33,8 @@ const EmployeeForm = () => {
     register,
     watch,
     handleSubmit,
+    reset,
     formState: { errors },
-    clearErrors,
   } = useForm<EmployeeFormInputs>({
     defaultValues: {
       countryOfWork: CountryEnum.Spain,
@@ -41,13 +44,13 @@ const EmployeeForm = () => {
   useEffect(() => {
     const subscription = watch((value, { name, type }) => {
       console.log(value, name, type);
-      clearErrors();
     });
     return () => subscription.unsubscribe();
-  }, [watch, clearErrors]);
+  }, [watch]);
 
   const onSubmit: SubmitHandler<EmployeeFormInputs> = (data) => {
     console.log(data);
+    reset();
   };
 
   const watchCountryOfWork = watch('countryOfWork');
@@ -71,51 +74,13 @@ const EmployeeForm = () => {
       {errors.dateOfBirth && <p>Please check the Date Of Birth</p>}
 
       {watchCountryOfWork === CountryEnum.Spain && (
-        <React.Fragment>
-          <label>Holiday Allowance</label>
-          <input
-            {...register('holidayAllowance', { required: true, min: 30 })}
-          />
-          {errors.holidayAllowance && (
-            <p>Minimum number of Holiday Allowance is 30</p>
-          )}
-          <label>Marital Status</label>
-          <input {...register('maritalStatus', { required: true })} />
-          {errors.maritalStatus && <p>Please check the Marital Status</p>}
-          <label>Social Insurance Number</label>
-          <input {...register('socialInsuranceNumber', { required: true })} />
-          {errors.socialInsuranceNumber && (
-            <p>Please check the Social Insurance Number</p>
-          )}
-        </React.Fragment>
+        <ExtraFieldsSpain register={register} errors={errors} />
       )}
       {watchCountryOfWork === CountryEnum.Ghana && (
-        <React.Fragment>
-          <label>Holiday Allowance</label>
-          <input {...register('holidayAllowance', { required: true })} />
-          {errors.holidayAllowance && <p>Please check the Holiday Allowance</p>}
-          <label>Marital Status</label>
-          <input {...register('maritalStatus', { required: true })} />
-          {errors.maritalStatus && <p>Please check the Marital Status</p>}
-          <label>Number Of Children</label>
-          <input {...register('numberOfChildren', { required: true })} />
-          {errors.numberOfChildren && (
-            <p>Please check the Number Of Children</p>
-          )}
-        </React.Fragment>
+        <ExtraFieldsGhana register={register} errors={errors} />
       )}
       {watchCountryOfWork === CountryEnum.Brazil && (
-        <React.Fragment>
-          <label>Holiday Allowance</label>
-          <input
-            {...register('holidayAllowance', { required: true, max: 40 })}
-          />
-          {errors.holidayAllowance && (
-            <p>Maximum number of Holiday Allowance is 40</p>
-          )}
-          <label>Working Hours</label>
-          <input {...register('workingHours')} />
-        </React.Fragment>
+        <ExtraFieldsBrazil register={register} errors={errors} />
       )}
       <input type="submit" />
     </form>
