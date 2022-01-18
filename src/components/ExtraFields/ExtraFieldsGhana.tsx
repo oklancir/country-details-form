@@ -11,6 +11,7 @@ type ExtraFieldsGhanaErrors = {
   holidayAllowance?: FieldError | undefined;
   /* Extra fields */
   // Ghana
+  maritalStatus?: FieldError | undefined;
   numberOfChildren?: FieldError | undefined;
 };
 
@@ -28,6 +29,9 @@ const ExtraFieldsGhana = ({
       <label>Holiday Allowance</label>
       <input {...register('holidayAllowance', { required: true, min: 0 })} />
       {errors.holidayAllowance && <p>Please check the Holiday Allowance</p>}
+      <label>Marital Status</label>
+      <input {...register('maritalStatus', { required: true })} />
+      {errors.maritalStatus && <p>Please check the Marital Status</p>}
       <label>Number Of Children</label>
       <input {...register('numberOfChildren', { required: true })} />
       {errors.numberOfChildren && <p>Please check the Number Of Children</p>}
