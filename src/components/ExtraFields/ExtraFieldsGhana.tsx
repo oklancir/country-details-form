@@ -27,7 +27,7 @@ const ExtraFieldsGhana = ({
   return (
     <React.Fragment>
       <label>Holiday Allowance</label>
-      <input {...register('holidayAllowance', { required: true, min: 0 })} />
+      <input {...register('holidayAllowance', { required: true })} />
       {errors.holidayAllowance && <p>Please check the Holiday Allowance</p>}
       <label>Marital Status</label>
       <input {...register('maritalStatus', { required: true })} />
