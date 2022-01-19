@@ -71,23 +71,35 @@ const EmployeeForm = () => {
 
   return (
     <form className="EmployeeForm" onSubmit={handleSubmit(onSubmit)}>
-      <label>Country Selection</label>
-      <select {...register('countryOfWork', { required: true })}>
+      <label>Country Of Work</label>
+      <select
+        aria-label="country of work"
+        {...register('countryOfWork', { required: true })}
+      >
         <option value="Spain">Spain</option>
         <option value="Ghana">Ghana</option>
         <option value="Brazil">Brazil</option>
       </select>
       <label>First Name</label>
-      <input {...register('firstName', { required: true })} />
+      <input
+        aria-label="first name"
+        {...register('firstName', { required: true })}
+      />
       {errors.firstName && <p>Please check the First Name</p>}
       <label>Last Name</label>
-      <input {...register('lastName', { required: true })} />
+      <input
+        aria-label="last name"
+        {...register('lastName', { required: true })}
+      />
       {errors.lastName && <p>Please check the Last Name</p>}
       <label>Date Of Birth</label>
-      <input {...register('dateOfBirth', { required: true })} />
+      <input
+        aria-label="date of birth"
+        {...register('dateOfBirth', { required: true })}
+      />
       {errors.dateOfBirth && <p>Please check the Date Of Birth</p>}
       {renderExtraFields(watchCountryOfWork)}
-      <input type="submit" />
+      <input aria-label="submit employee form" type="submit" />
     </form>
   );
 };

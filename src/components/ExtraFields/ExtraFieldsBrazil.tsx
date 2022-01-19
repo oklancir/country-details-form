@@ -26,12 +26,20 @@ const ExtraFieldsBrazil = ({
   return (
     <React.Fragment>
       <label>Holiday Allowance</label>
-      <input {...register('holidayAllowance', { required: true, max: 40 })} />
+      <input
+        aria-label="holiday allowance"
+        {...register('holidayAllowance', { required: true, max: 40 })}
+      />
       {errors.holidayAllowance && (
-        <p>Maximum number of Holiday Allowance is 40</p>
+        <p aria-label="error holiday allowance 40">
+          Maximum number of Holiday Allowance is 40
+        </p>
       )}
       <label>Working Hours</label>
-      <input {...register('workingHours')} />
+      <input aria-label="working hours" {...register('workingHours')} />
+      {errors.workingHours && (
+        <p aria-label="error working hours">Please check Working Hours</p>
+      )}
     </React.Fragment>
   );
 };

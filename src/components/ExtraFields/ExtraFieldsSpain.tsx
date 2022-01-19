@@ -27,17 +27,32 @@ const ExtraFieldsSpain = ({
   return (
     <React.Fragment>
       <label>Holiday Allowance</label>
-      <input {...register('holidayAllowance', { required: true, min: 30 })} />
+      <input
+        aria-label="holiday allowance"
+        {...register('holidayAllowance', { required: true, min: 30 })}
+      />
       {errors.holidayAllowance && (
-        <p>Minimum number of Holiday Allowance is 30</p>
+        <p aria-label="error holiday allowance 30">
+          Minimum number of Holiday Allowance is 30
+        </p>
       )}
       <label>Marital Status</label>
-      <input {...register('maritalStatus', { required: true })} />
-      {errors.maritalStatus && <p>Please check the Marital Status</p>}
+      <input
+        aria-label="marital status"
+        {...register('maritalStatus', { required: true })}
+      />
+      {errors.maritalStatus && (
+        <p aria-label="error marital status">Please check the Marital Status</p>
+      )}
       <label>Social Insurance Number</label>
-      <input {...register('socialInsuranceNumber', { required: true })} />
+      <input
+        aria-label="social insurance number"
+        {...register('socialInsuranceNumber', { required: true })}
+      />
       {errors.socialInsuranceNumber && (
-        <p>Please check the Social Insurance Number</p>
+        <p aria-label="error social insurance number">
+          Please check the Social Insurance Number
+        </p>
       )}
     </React.Fragment>
   );

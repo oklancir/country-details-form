@@ -27,14 +27,33 @@ const ExtraFieldsGhana = ({
   return (
     <React.Fragment>
       <label>Holiday Allowance</label>
-      <input {...register('holidayAllowance', { required: true })} />
-      {errors.holidayAllowance && <p>Please check the Holiday Allowance</p>}
+      <input
+        aria-label="holiday allowance"
+        {...register('holidayAllowance', { required: true })}
+      />
+      {errors.holidayAllowance && (
+        <p aria-label="error holiday allowance">
+          Please check the Holiday Allowance
+        </p>
+      )}
       <label>Marital Status</label>
-      <input {...register('maritalStatus', { required: true })} />
-      {errors.maritalStatus && <p>Please check the Marital Status</p>}
+      <input
+        aria-label="marital status"
+        {...register('maritalStatus', { required: true })}
+      />
+      {errors.maritalStatus && (
+        <p aria-label="error marital status">Please check the Marital Status</p>
+      )}
       <label>Number Of Children</label>
-      <input {...register('numberOfChildren', { required: true })} />
-      {errors.numberOfChildren && <p>Please check the Number Of Children</p>}
+      <input
+        aria-label="number of children"
+        {...register('numberOfChildren', { required: true })}
+      />
+      {errors.numberOfChildren && (
+        <p aria-label="error number of children">
+          Please check the Number Of Children
+        </p>
+      )}
     </React.Fragment>
   );
 };
