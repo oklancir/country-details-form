@@ -3,7 +3,6 @@ import EmployeeForm from './EmployeeForm';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
-import { act } from 'react-dom/test-utils';
 
 test('country of work label renders with correct text', () => {
   render(<EmployeeForm />);
@@ -22,6 +21,100 @@ enum FieldLabels {
   workingHours = 'working hours',
   submitEmployeeForm = 'submit employee form',
 }
+
+test('Country of Work label and input renders correctly', () => {
+  const countryOfWork = 'Country Of Work';
+
+  render(<EmployeeForm />);
+
+  expect(screen.getByText(countryOfWork)).toBeInTheDocument();
+  expect(screen.getByLabelText(FieldLabels.countryOfWork)).toBeInTheDocument();
+});
+
+test('First Name label and input renders correctly', () => {
+  const firstName = 'First Name';
+
+  render(<EmployeeForm />);
+
+  expect(screen.getByText(firstName)).toBeInTheDocument();
+  expect(screen.getByLabelText(FieldLabels.firstName)).toBeInTheDocument();
+});
+
+test('Last Name label and input renders correctly', () => {
+  const lastName = 'Last Name';
+
+  render(<EmployeeForm />);
+
+  expect(screen.getByText(lastName)).toBeInTheDocument();
+  expect(screen.getByLabelText(FieldLabels.lastName)).toBeInTheDocument();
+});
+
+test('Date Of Birth label and input renders correctly', () => {
+  const dateOfBirth = 'Last Name';
+
+  render(<EmployeeForm />);
+
+  expect(screen.getByText(dateOfBirth)).toBeInTheDocument();
+  expect(screen.getByLabelText(FieldLabels.dateOfBirth)).toBeInTheDocument();
+});
+
+test('selecting Spain renders correct extra fields', () => {
+  const countryOfWork = 'Spain';
+
+  render(<EmployeeForm />);
+
+  userEvent.selectOptions(
+    screen.getByLabelText(FieldLabels.countryOfWork),
+    countryOfWork
+  );
+
+  expect(
+    screen.getByLabelText(FieldLabels.holidayAllowance)
+  ).toBeEmptyDOMElement();
+  expect(
+    screen.getByLabelText(FieldLabels.maritalStatus)
+  ).toBeEmptyDOMElement();
+  expect(
+    screen.getByLabelText(FieldLabels.socialInsuranceNumber)
+  ).toBeEmptyDOMElement();
+});
+
+test('selecting Ghana renders correct extra fields', () => {
+  const countryOfWork = 'Ghana';
+
+  render(<EmployeeForm />);
+
+  userEvent.selectOptions(
+    screen.getByLabelText(FieldLabels.countryOfWork),
+    countryOfWork
+  );
+
+  expect(
+    screen.getByLabelText(FieldLabels.holidayAllowance)
+  ).toBeEmptyDOMElement();
+  expect(
+    screen.getByLabelText(FieldLabels.maritalStatus)
+  ).toBeEmptyDOMElement();
+  expect(
+    screen.getByLabelText(FieldLabels.numberOfChildren)
+  ).toBeEmptyDOMElement();
+});
+
+test('selecting Brazil renders correct extra fields', () => {
+  const countryOfWork = 'Brazil';
+
+  render(<EmployeeForm />);
+
+  userEvent.selectOptions(
+    screen.getByLabelText(FieldLabels.countryOfWork),
+    countryOfWork
+  );
+
+  expect(
+    screen.getByLabelText(FieldLabels.holidayAllowance)
+  ).toBeEmptyDOMElement();
+  expect(screen.getByLabelText(FieldLabels.workingHours)).toBeEmptyDOMElement();
+});
 
 test('submits employee form with extra fields for Spain', () => {
   const countryOfWork = 'Spain';
