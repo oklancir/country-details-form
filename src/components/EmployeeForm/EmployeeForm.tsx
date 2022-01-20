@@ -3,6 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import ExtraFieldsBrazil from '../ExtraFields/ExtraFieldsBrazil';
 import ExtraFieldsGhana from '../ExtraFields/ExtraFieldsGhana';
 import ExtraFieldsSpain from '../ExtraFields/ExtraFieldsSpain';
+import { CountryEnum, EmployeeFormInputs } from '../models';
 import { assertUnreachable } from '../../utils';
 
 import {
@@ -12,28 +13,6 @@ import {
   Paragraph,
   Select,
 } from '../EmployeeFormElements/EmployeeFormElements';
-
-export enum CountryEnum {
-  Spain = 'Spain',
-  Ghana = 'Ghana',
-  Brazil = 'Brazil',
-}
-
-export type EmployeeFormInputs = {
-  countryOfWork: CountryEnum;
-  firstName: string;
-  lastName: string;
-  dateOfBirth: Date;
-  holidayAllowance: number;
-  /* Extra fields */
-  // Spain
-  maritalStatus: string;
-  socialInsuranceNumber: number;
-  // Ghana
-  numberOfChildren: number;
-  // Brazil
-  workingHours: string;
-};
 
 const EmployeeForm = () => {
   const {

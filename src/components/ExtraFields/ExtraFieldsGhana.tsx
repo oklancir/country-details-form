@@ -1,7 +1,6 @@
 import React from 'react';
 import { FieldError, UseFormRegister } from 'react-hook-form';
-
-import { EmployeeFormInputs } from '../EmployeeForm/EmployeeForm';
+import { EmployeeFormInputs } from '../models';
 import {
   Input,
   Label,
