@@ -44,3 +44,12 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+## Omnipresent Frontend task notes
+
+I have made the assumption that only 3 of these countries would be used so I have made 3 separate components for
+the Extra Fields as it required less time.
+If there would be many more countries added I would consider making a more dynamic solution for generating forms,
+but that would also require significantly more time to develop.
+
+Also, for a bigger app, I would consider a different components/modules/tests structure.
