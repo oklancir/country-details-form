@@ -2,6 +2,11 @@ import React from 'react';
 import { FieldError, UseFormRegister } from 'react-hook-form';
 
 import { EmployeeFormInputs } from '../EmployeeForm/EmployeeForm';
+import {
+  Input,
+  Label,
+  Paragraph,
+} from '../EmployeeFormElements/EmployeeFormElements';
 
 type ExtraFieldsGhanaErrors = {
   countryOfWork?: FieldError | undefined;
@@ -26,33 +31,35 @@ const ExtraFieldsGhana = ({
 }: ExtraFieldsGhanaProps): JSX.Element => {
   return (
     <React.Fragment>
-      <label>Holiday Allowance</label>
-      <input
+      <Label>Holiday Allowance</Label>
+      <Input
         aria-label="holiday allowance"
         {...register('holidayAllowance', { required: true })}
       />
       {errors.holidayAllowance && (
-        <p aria-label="error holiday allowance">
+        <Paragraph aria-label="error holiday allowance">
           Please check the Holiday Allowance
-        </p>
+        </Paragraph>
       )}
-      <label>Marital Status</label>
-      <input
+      <Label>Marital Status</Label>
+      <Input
         aria-label="marital status"
         {...register('maritalStatus', { required: true })}
       />
       {errors.maritalStatus && (
-        <p aria-label="error marital status">Please check the Marital Status</p>
+        <Paragraph aria-label="error marital status">
+          Please check the Marital Status
+        </Paragraph>
       )}
-      <label>Number Of Children</label>
-      <input
+      <Label>Number Of Children</Label>
+      <Input
         aria-label="number of children"
         {...register('numberOfChildren', { required: true })}
       />
       {errors.numberOfChildren && (
-        <p aria-label="error number of children">
+        <Paragraph aria-label="error number of children">
           Please check the Number Of Children
-        </p>
+        </Paragraph>
       )}
     </React.Fragment>
   );

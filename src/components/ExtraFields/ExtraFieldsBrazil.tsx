@@ -2,6 +2,11 @@ import React from 'react';
 import { FieldError, UseFormRegister } from 'react-hook-form';
 
 import { EmployeeFormInputs } from '../EmployeeForm/EmployeeForm';
+import {
+  Input,
+  Label,
+  Paragraph,
+} from '../EmployeeFormElements/EmployeeFormElements';
 
 type ExtraFieldsBrazilErrors = {
   countryOfWork?: FieldError | undefined;
@@ -25,20 +30,22 @@ const ExtraFieldsBrazil = ({
 }: ExtraFieldsGhanaProps): JSX.Element => {
   return (
     <React.Fragment>
-      <label>Holiday Allowance</label>
-      <input
+      <Label>Holiday Allowance</Label>
+      <Input
         aria-label="holiday allowance"
         {...register('holidayAllowance', { required: true, max: 40 })}
       />
       {errors.holidayAllowance && (
-        <p aria-label="error holiday allowance 40">
+        <Paragraph aria-label="error holiday allowance 40">
           Maximum number of Holiday Allowance is 40
-        </p>
+        </Paragraph>
       )}
-      <label>Working Hours</label>
-      <input aria-label="working hours" {...register('workingHours')} />
+      <Label>Working Hours</Label>
+      <Input aria-label="working hours" {...register('workingHours')} />
       {errors.workingHours && (
-        <p aria-label="error working hours">Please check Working Hours</p>
+        <Paragraph aria-label="error working hours">
+          Please check Working Hours
+        </Paragraph>
       )}
     </React.Fragment>
   );

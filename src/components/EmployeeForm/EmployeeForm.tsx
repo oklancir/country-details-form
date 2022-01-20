@@ -5,9 +5,15 @@ import ExtraFieldsGhana from '../ExtraFields/ExtraFieldsGhana';
 import ExtraFieldsSpain from '../ExtraFields/ExtraFieldsSpain';
 import { assertUnreachable } from '../../utils';
 
-import './EmployeeForm.css';
+import {
+  Form,
+  Input,
+  Label,
+  Paragraph,
+  Select,
+} from '../EmployeeFormElements/EmployeeFormElements';
 
-enum CountryEnum {
+export enum CountryEnum {
   Spain = 'Spain',
   Ghana = 'Ghana',
   Brazil = 'Brazil',
@@ -70,37 +76,40 @@ const EmployeeForm = () => {
   };
 
   return (
-    <form className="EmployeeForm" onSubmit={handleSubmit(onSubmit)}>
-      <label>Country Of Work</label>
-      <select
+    <Form className="EmployeeForm" onSubmit={handleSubmit(onSubmit)}>
+      <Label>Country Of Work</Label>
+      <Select
         aria-label="country of work"
         {...register('countryOfWork', { required: true })}
       >
         <option value="Spain">Spain</option>
         <option value="Ghana">Ghana</option>
         <option value="Brazil">Brazil</option>
-      </select>
-      <label>First Name</label>
-      <input
+      </Select>
+      <Label>First Name</Label>
+      <Input
         aria-label="first name"
         {...register('firstName', { required: true })}
       />
-      {errors.firstName && <p>Please check the First Name</p>}
-      <label>Last Name</label>
-      <input
+      {errors.firstName && <Paragraph>Please check the First Name</Paragraph>}
+      <Label>Last Name</Label>
+      <Input
         aria-label="last name"
         {...register('lastName', { required: true })}
       />
-      {errors.lastName && <p>Please check the Last Name</p>}
-      <label>Date Of Birth</label>
-      <input
+      {errors.lastName && <Paragraph>Please check the Last Name</Paragraph>}
+      <Label>Date Of Birth</Label>
+      <Input
         aria-label="date of birth"
+        type="date"
         {...register('dateOfBirth', { required: true })}
       />
-      {errors.dateOfBirth && <p>Please check the Date Of Birth</p>}
+      {errors.dateOfBirth && (
+        <Paragraph>Please check the Date Of Birth</Paragraph>
+      )}
       {renderExtraFields(watchCountryOfWork)}
-      <input aria-label="submit employee form" type="submit" />
-    </form>
+      <Input aria-label="submit employee form" type="submit" />
+    </Form>
   );
 };
 
