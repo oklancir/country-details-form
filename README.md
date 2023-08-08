@@ -45,7 +45,7 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-## Omnipresent Frontend task notes
+## Frontend task notes
 
 I have made the assumption that only 3 of these countries would be used so I have made 3 separate components for
 the Extra Fields as it required less time.
